@@ -29,4 +29,4 @@ ENV FLASK_APP=web_app.py
 ENV FLASK_ENV=production
 
 # Run the application with gunicorn
-CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:${PORT:-5000}", "web_app:app"]
+CMD ["sh", "-c", "gunicorn -w 1 -b 0.0.0.0:${PORT:-5000} web_app:app"]
