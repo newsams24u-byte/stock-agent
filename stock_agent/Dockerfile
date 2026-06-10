@@ -28,5 +28,5 @@ EXPOSE 5000
 ENV FLASK_APP=web_app.py
 ENV FLASK_ENV=production
 
-# Run the application
-CMD ["python", "web_app.py"]
+# Run the application with gunicorn
+CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:${PORT:-5000}", "web_app:app"]
