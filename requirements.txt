@@ -1,1 +1,11 @@
--r stock_agent/requirements.txt
+yfinance==0.2.32
+pandas==2.1.3
+numpy==1.26.2
+technical-analysis==0.7.1
+flask==3.0.0
+sqlalchemy==2.0.23
+python-dotenv==1.0.0
+schedule==1.2.0
+requests==2.31.0
+twilio==8.10.0
+gunicorn==21.2.0
