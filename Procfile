@@ -1,0 +1,1 @@
+web: cd stock_agent && gunicorn -w 1 -b 0.0.0.0:$PORT web_app:app
