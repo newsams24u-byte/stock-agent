@@ -1,0 +1,9 @@
+instagram_agent/
+.venv/
+venv/
+.git/
+*.pyc
+__pycache__/
+.pytest_cache/
+instance/
+*.log
