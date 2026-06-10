@@ -1,0 +1,6 @@
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  FLASK_ENV = "production"
+  FLASK_DEBUG = "false"

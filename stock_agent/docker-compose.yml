@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # Web Dashboard
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - DATABASE_URL=sqlite:///data/trades.db
+      - EMAIL_SENDER=${EMAIL_SENDER}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+      - EMAIL_RECEIVER=${EMAIL_RECEIVER}
+      - WHATSAPP_API_KEY=${WHATSAPP_API_KEY}
+      - WHATSAPP_PHONE=${WHATSAPP_PHONE}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Background Analysis Job (optional)
+  # Uncomment to run hourly analysis in background
+  # analyzer:
+  #   build: .
+  #   environment:
+  #     - DATABASE_URL=sqlite:///data/trades.db
+  #     - EMAIL_SENDER=${EMAIL_SENDER}
+  #     - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+  #   command: python -c "
+  #     from stock_agent import StockMarketAgent
+  #     agent = StockMarketAgent()
+  #     agent.start_monitoring()
+  #     "
+  #   volumes:
+  #     - ./data:/app/data
+  #     - ./logs:/app/logs
+  #     - ./.env:/app/.env
+  #   restart: unless-stopped
+
+volumes:
+  data:
+  logs:
