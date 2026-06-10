@@ -1,7 +1,6 @@
 [build]
-  builder = "dockerfile"
   dockerfile = "stock_agent/Dockerfile"
-  workdir = "stock_agent"
+  context = "stock_agent"
 
 [env]
   FLASK_ENV = "production"
